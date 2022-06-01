@@ -1,12 +1,9 @@
-AWSTemplateFormatVersion: 2010-09-09
 Description: 
   Server infrastructure
-  Create a Launch Configuration in order to deploy four servers, two located in each of
+  This template creates a  Launch Configuration in order to deploy four servers, two located in each of
   your private subnets. The launch configuration will be used by an auto-scaling group.
-  You'll need two vCPUs and at least 4GB of RAM. The Operating System to be used is
-  Ubuntu 18. So, choose an Instance size and Machine Image (AMI) that best fits this spec
-  Be sure to allocate at least 10GB of disk space so that you don't run into issues.
-
+  It also creates  two vCPUs and at least 4GB of RAM. The Operating System to be used is
+  Ubuntu 18
 Parameters:
   Environment:
     Description: Environment name, used as a prefix for resources
@@ -19,7 +16,8 @@ Parameters:
   ServerImageId:
     Description: Web serve image id
     Type: String
-    Default: ami-00a54827eb7ffcd3c # Ubuntu Server 18.04 LTS
+    Default: ami-0cfa91bdbc3be780c # Ubuntu Server 18.04 LTS
+  
 
   WebServerVolumeSize:
     Description: Web server disk volume size
@@ -79,8 +77,6 @@ Resources:
  
 
   # ----------------- EC2 ------------------
-
-
   # The LaunchConfiguration resource specifies the Amazon EC2 Auto Scaling launch configuration
 
   WebAppServer:
@@ -109,8 +105,6 @@ Resources:
 
 
   # ------------ Resource groups -----------
-  #-----------------------------------------
-
   # Specifies a target group for an Application Load Balancer or Network Load Balancer.
   WebAppTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
